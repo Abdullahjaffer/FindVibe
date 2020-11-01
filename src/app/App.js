@@ -12,53 +12,38 @@ import User from "../pages/user";
 import About from "../pages/about";
 import Post from "../pages/posts";
 import { connect } from "react-redux";
-import Addpost from "../pages/addPost";
-import { Button } from "antd";
+import Listings from "../pages/listings";
+import { Button, Layout } from "antd";
+import TopBar from "../components/TopBar";
+import Footer from "../components/Footer";
+import Reviews from "../pages/reviews";
+import Login from "../pages/login";
+
 class App extends React.Component {
   render() {
     return (
       <Router>
-        <ul>
-          <li>
-            <NavLink exact activeClassName="active" to="/">
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink exact activeClassName="active" to="/user">
-              Users
-            </NavLink>
-          </li>
-          <li>
-            <NavLink exact activeClassName="active" to="/user/5">
-              Users with id 5
-            </NavLink>
-          </li>
-          <li>
-            <NavLink activeClassName="active" to="/about">
-              About
-            </NavLink>
-          </li>
-          <li>
-            <NavLink activeClassName="active" to="/post">
-              Post({this.props.posts.length})
-            </NavLink>
-          </li>
-          <li>
-            <NavLink activeClassName="active" to="/add-post">
-              Add post
-            </NavLink>
-          </li>
-        </ul>
-        <Button>YOOO</Button>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/user/:id?" component={User} />
-          <Route path="/about" component={About} />
-          <Route path="/post" component={Post} />
-          <Route path="/add-post" component={Addpost} />
-          <Route component={() => <h1>Not found</h1>} />
-        </Switch>
+        <Layout
+          style={{
+            minHeight: "100vh",
+          }}
+        >
+          <TopBar />
+          <Layout.Content
+            style={{
+              padding: "30px 50px",
+            }}
+          >
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/listings" component={Listings} />
+              <Route path="/reviews" component={Reviews} />
+              <Route path="/login" component={Login} />
+              <Route component={() => <h1>Not found</h1>} />
+            </Switch>
+          </Layout.Content>
+          <Footer />
+        </Layout>
       </Router>
     );
   }
