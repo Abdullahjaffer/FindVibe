@@ -18,6 +18,9 @@ import TopBar from "../components/TopBar";
 import Footer from "../components/Footer";
 import Reviews from "../pages/reviews";
 import Login from "../pages/login";
+import AddBusiness from "../pages/add-business-1";
+import AddBusinessSelectPackage from "../pages/add-business-2";
+import AddReview from "../pages/add-review";
 
 class App extends React.Component {
   render() {
@@ -39,6 +42,13 @@ class App extends React.Component {
               <Route path="/listings" component={Listings} />
               <Route path="/reviews" component={Reviews} />
               <Route path="/login" component={Login} />
+              <Route path="/add-business-1" component={AddBusiness} />
+              <Route
+                path="/add-business-2"
+                component={AddBusinessSelectPackage}
+              />
+              <Route path="/add-review" component={AddReview} />
+
               <Route component={() => <h1>Not found</h1>} />
             </Switch>
           </Layout.Content>

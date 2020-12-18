@@ -1,6 +1,6 @@
 import { Button, Col, Input, Layout, Row } from "antd";
 import React from "react";
-import DummyFooter from "../static/DummyFooter.svg";
+import DummyFooter from "../static/Path-13@2x.png";
 
 class Footer extends React.Component {
   componentDidMount() {
@@ -12,6 +12,9 @@ class Footer extends React.Component {
         style={{
           backgroundColor: "white",
           backgroundImage: `url(${DummyFooter})`,
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "120% 110%",
           padding: 50,
         }}
       >

@@ -33,6 +33,7 @@ const menuItems = (defaultKey, cb) => (
 );
 
 class TopBar extends React.Component {
+  componentDidMount() {}
   // Finds which menu item is s
   getActiveMenuItems = () => {
     let keys = [];
@@ -68,7 +69,12 @@ class TopBar extends React.Component {
           }}
         >
           <img src={logo} width="180" />
-          <Button type="primary" ghost size="large">
+          <Button
+            type="primary"
+            ghost
+            size="large"
+            onClick={() => this.props.history.push("add-business-1")}
+          >
             Add Your Business
           </Button>
           <div>{menuItems(this.getActiveMenuItems(), () => {})}</div>
