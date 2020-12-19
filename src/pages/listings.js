@@ -1,19 +1,25 @@
-import { Row, Typography, Col, Button, Card, Rate } from "antd";
-import React from "react";
-import { connect } from "react-redux";
-import SearchBar from "../components/SearchBar";
-import { simpleAction } from "../Redux/Actions/simpleAction";
 import {
-  CompassOutlined,
   AppstoreOutlined,
-  HeartOutlined,
-  MessageOutlined,
   ArrowLeftOutlined,
   ArrowRightOutlined,
+  CompassOutlined,
+  HeartOutlined,
+  MessageOutlined,
 } from "@ant-design/icons";
-import FooterHeader from "../components/FooterHeader";
+import { Button, Card, Col, Rate, Row, Typography } from "antd";
+import { Map, Marker } from "pigeon-maps";
+import React from "react";
+import { connect } from "react-redux";
 import CategoryButtons from "../components/categoryButtons";
+import FooterHeader from "../components/FooterHeader";
+import SearchBar from "../components/SearchBar";
+import { simpleAction } from "../Redux/Actions/simpleAction";
+
 class Listings extends React.Component {
+  state = {
+    showMap: false,
+  };
+
   createCard = () => (
     <Col span={12}>
       <Card
@@ -75,6 +81,25 @@ class Listings extends React.Component {
   );
 
   render() {
+    const map = (
+      <Map
+        defaultCenter={[50.879, 4.6997]}
+        defaultZoom={12}
+        provider={(x, y, z) =>
+          `https://a.tile.openstreetmap.org/${z}/${x}/${y}.png`
+        }
+      >
+        <Marker
+          anchor={[50.874, 4.6947]}
+          payload={1}
+          onClick={({ event, anchor, payload }) => {}}
+        />
+
+        {/* <Overlay anchor={[50.879, 4.6997]} offset={[120, 79]}>
+          <img src="pigeon.jpg" width={240} height={158} alt="" />
+        </Overlay> */}
+      </Map>
+    );
     return (
       <>
         <Typography.Title
@@ -105,6 +130,7 @@ class Listings extends React.Component {
             type="primary"
             ghost
             shape="circle"
+            onClick={() => this.setState({ showMap: true })}
           ></Button>{" "}
           <Button
             icon={<AppstoreOutlined />}
@@ -114,13 +140,27 @@ class Listings extends React.Component {
             shape="circle"
           ></Button>
         </div>
-        <Row
-          style={{
-            marginTop: 50,
-          }}
-          gutter={[16, 16]}
-        >
-          {[0, 0, 0, 0, 0, 0].map((v) => this.createCard())}
+        <Row>
+          <Col span={this.state.showMap ? 12 : 24}>
+            <Row
+              style={{
+                marginTop: 50,
+              }}
+              gutter={[16, 16]}
+            >
+              {[0, 0, 0, 0, 0, 0].map((v) => this.createCard())}
+            </Row>
+          </Col>
+          {this.state.showMap && (
+            <Col
+              span={12}
+              style={{
+                padding: 20,
+              }}
+            >
+              {map}
+            </Col>
+          )}
         </Row>
         <div
           style={{
