@@ -30,97 +30,109 @@ const menuItems = (defaultKey, cb) => (
         Reviews
       </NavLink>
     </Menu.Item>
-    <Menu.Item key="4">
-      <NavLink exact to="/login">
-        Login
-      </NavLink>
-    </Menu.Item>
-    <Menu.Item key="5">
-      <Dropdown
-        overlay={
-          <Menu>
-            <Menu.Item>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                // href="http://www.alipay.com/"
-              >
-                Lorem ipsum dolor sit amet
-              </a>
-            </Menu.Item>
-            <Menu.Item>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                // href="http://www.taobao.com/"
-              >
-                Lorem ipsum dolor sit amet
-              </a>
-            </Menu.Item>
-            <Menu.Item>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                // href="http://www.tmall.com/"
-              >
-                Lorem ipsum dolor sit amet,
-              </a>
-            </Menu.Item>
-          </Menu>
-        }
-        placement="topRight"
-      >
-        <Button
-          type="link"
-          size="large"
-          icon={
-            <Badge count={3}>
-              <NotificationOutlined
-                style={{
-                  fontSize: 20,
-                }}
-              />
-            </Badge>
-          }
-        />
-      </Dropdown>
-    </Menu.Item>
-    <Menu.Item key="6">
-      <Dropdown
-        overlay={
-          <Menu>
-            <Menu.Item>
-              <NavLink exact to="/business-profile">
-                Profile Settings
-              </NavLink>
-            </Menu.Item>
-            <Menu.Item>
-              <NavLink exact to="/messages">
-                <MessageOutlined /> Messages
-              </NavLink>
-            </Menu.Item>
-            <Menu.Item>
-              <NavLink exact to="/">
-                <HeartOutlined /> Favorites
-              </NavLink>
-            </Menu.Item>
-            <Menu.Item>
-              <NavLink exact to="/dashboard">
-                Dashboard
-              </NavLink>
-            </Menu.Item>
-            <Menu.Item>
-              <Button type="primary" ghost>
-                Log out
-              </Button>
-            </Menu.Item>
-          </Menu>
-        }
-        placement="topRight"
-      >
-        <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-      </Dropdown>
-    </Menu.Item>
+    {localStorage.getItem("login") ? (
+      <React.Fragment>
+        <Menu.Item key="5">
+          <Dropdown
+            overlay={
+              <Menu>
+                <Menu.Item>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    // href="http://www.alipay.com/"
+                  >
+                    Lorem ipsum dolor sit amet
+                  </a>
+                </Menu.Item>
+                <Menu.Item>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    // href="http://www.taobao.com/"
+                  >
+                    Lorem ipsum dolor sit amet
+                  </a>
+                </Menu.Item>
+                <Menu.Item>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    // href="http://www.tmall.com/"
+                  >
+                    Lorem ipsum dolor sit amet,
+                  </a>
+                </Menu.Item>
+              </Menu>
+            }
+            placement="topRight"
+          >
+            <Button
+              type="link"
+              size="large"
+              icon={
+                <Badge count={3}>
+                  <NotificationOutlined
+                    style={{
+                      fontSize: 20,
+                    }}
+                  />
+                </Badge>
+              }
+            />
+          </Dropdown>
+        </Menu.Item>
+        <Menu.Item key="6">
+          <Dropdown
+            overlay={
+              <Menu>
+                <Menu.Item>
+                  <NavLink exact to="/business-profile">
+                    Profile Settings
+                  </NavLink>
+                </Menu.Item>
+                <Menu.Item>
+                  <NavLink exact to="/messages">
+                    <MessageOutlined /> Messages
+                  </NavLink>
+                </Menu.Item>
+                <Menu.Item>
+                  <NavLink exact to="/">
+                    <HeartOutlined /> Favorites
+                  </NavLink>
+                </Menu.Item>
+                <Menu.Item>
+                  <NavLink exact to="/dashboard">
+                    Dashboard
+                  </NavLink>
+                </Menu.Item>
+                <Menu.Item>
+                  <Button
+                    type="primary"
+                    ghost
+                    onClick={() => {
+                      localStorage.removeItem("login");
+                      cb();
+                    }}
+                  >
+                    Log out
+                  </Button>
+                </Menu.Item>
+              </Menu>
+            }
+            placement="topRight"
+          >
+            <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+          </Dropdown>
+        </Menu.Item>
+      </React.Fragment>
+    ) : (
+      <Menu.Item key="4">
+        <NavLink exact to="/login">
+          Login
+        </NavLink>
+      </Menu.Item>
+    )}
   </Menu>
 );
 
@@ -169,7 +181,11 @@ class TopBar extends React.Component {
           >
             Add Your Business
           </Button>
-          <div>{menuItems(this.getActiveMenuItems(), () => {})}</div>
+          <div>
+            {menuItems(this.getActiveMenuItems(), () => {
+              this.forceUpdate();
+            })}
+          </div>
         </div>
       </Layout.Header>
     );
