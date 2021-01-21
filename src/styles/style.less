@@ -1,0 +1,105 @@
+@primary-color: "#17AAF9";
+
+.searchBarWrapper {
+  width: 100%;
+  text-align: center;
+  .searchBar {
+    margin-left: 75px;
+    .searchbarLocation {
+      position: relative;
+      left: -25px;
+      width: 200px;
+      .ant-select-selector {
+        border-color: @primary-color;
+        border-radius: 0px 15px 15px 0px;
+        border-left-color: lightgray;
+      }
+    }
+    .searchbarLocation::after {
+      padding: 0;
+      margin: 0;
+      display: block; /* probably not really needed? */
+      content: "";
+      width: 1px;
+      height: 5px; /* slight higher to work around rounding errors(?) on some zoom levels in some browsers. */
+      background-color: white;
+      position: absolute;
+      left: 0;
+      bottom: 2px;
+    }
+    .searchbarLocation::before {
+      padding: 0;
+      margin: 0;
+      display: block; /* probably not really needed? */
+      content: "";
+      width: 1px;
+      height: 5px; /* slight higher to work around rounding errors(?) on some zoom levels in some browsers. */
+      background-color: white;
+      position: absolute;
+      left: 0;
+      top: 1px;
+      z-index: 1;
+    }
+    .searchbarSearch {
+      width: 300px;
+      .ant-select-selector {
+        border-color: @primary-color;
+        border-radius: 15px;
+      }
+    }
+    .searchButton {
+      position: relative;
+      left: -50px;
+      width: 55px;
+      height: 55px;
+      border-color: @primary-color;
+      top: -7px;
+      .searchIcon {
+        position: absolute;
+        font-size: 30px;
+        top: 5px;
+        right: 11px;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.BrainhubCarousel__arrows {
+  border-radius: 50%;
+}
+
+.floating {
+  position: relative;
+  min-width: 300px;
+  height: 250px;
+  img {
+    height: 200px;
+    object-fit: cover;
+    width: 250px;
+    border-radius: 15px;
+  }
+  .floater {
+    width: 280px;
+    top: 100px;
+    left: -15px;
+    position: absolute;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    z-index: 5;
+
+    .ant-card-body {
+      width: 100%;
+      z-index: 5;
+    }
+  }
+}
+
+.site-content {
+  display: flex;
+  justify-content: center;
+  .site {
+    max-width: 1200px;
+  }
+}

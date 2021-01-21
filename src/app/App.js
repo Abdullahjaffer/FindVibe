@@ -15,6 +15,7 @@ import Messages from "../pages/messages";
 import PublicBusinessProfile from "../pages/public-business-profile";
 import Reviews from "../pages/reviews";
 import "./App.less";
+import "../styles/style.less";
 
 class App extends React.Component {
   render() {
@@ -26,31 +27,29 @@ class App extends React.Component {
           }}
         >
           <TopBar />
-          <Layout.Content
-            style={{
-              padding: "30px 50px",
-            }}
-          >
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route
-                path="/business-profile"
-                component={PublicBusinessProfile}
-              />
-              <Route path="/listings" component={Listings} />
-              <Route path="/reviews" component={Reviews} />
-              <Route path="/login" component={Login} />
-              <Route path="/add-business-1" component={AddBusiness} />
-              <Route
-                path="/add-business-2"
-                component={AddBusinessSelectPackage}
-              />
-              <Route path="/add-review" component={AddReview} />
-              <Route path="/messages" component={Messages} />
-              <Route path="/dashboard" component={Dashboard} />
+          <Layout.Content className="site-content">
+            <div className="site">
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route
+                  path="/business-profile"
+                  component={PublicBusinessProfile}
+                />
+                <Route path="/listings" component={Listings} />
+                <Route path="/reviews" component={Reviews} />
+                <Route path="/login" component={Login} />
+                <Route path="/add-business-1" component={AddBusiness} />
+                <Route
+                  path="/add-business-2"
+                  component={AddBusinessSelectPackage}
+                />
+                <Route path="/add-review" component={AddReview} />
+                <Route path="/messages" component={Messages} />
+                <Route path="/dashboard" component={Dashboard} />
 
-              <Route component={() => <h1>Not found</h1>} />
-            </Switch>
+                <Route component={() => <h1>Not found</h1>} />
+              </Switch>
+            </div>
           </Layout.Content>
           <Footer />
         </Layout>
