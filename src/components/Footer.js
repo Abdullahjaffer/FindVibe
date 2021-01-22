@@ -14,8 +14,9 @@ class Footer extends React.Component {
           backgroundImage: `url(${DummyFooter})`,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          backgroundSize: "120% 110%",
-          padding: 50,
+          backgroundSize: "100% 100%",
+          padding: 150,
+          height: 400,
         }}
       >
         <Row

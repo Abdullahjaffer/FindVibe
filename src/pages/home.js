@@ -82,7 +82,7 @@ class Home extends React.Component {
               </Typography.Title>
             </Col>
           </Row>
-          <Carousel arrows slidesPerPage={3}>
+          <Carousel arrows slidesPerPage={3} itemWidth={300}>
             {[
               {
                 name: "AB Movings",
@@ -194,7 +194,7 @@ class Home extends React.Component {
               </Typography.Title>
             </Col>
           </Row>
-          <Carousel arrows slidesPerPage={3}>
+          <Carousel arrows slidesPerPage={3} itemWidth={300}>
             {[
               {
                 name: "AB Movings",
@@ -230,6 +230,7 @@ class Home extends React.Component {
                     padding: 5,
                     paddingRight: 15,
                     paddingLeft: 15,
+                    textAlign: "center",
                   }}
                 >
                   <Card.Meta
@@ -283,7 +284,7 @@ class Home extends React.Component {
               </Typography.Title>
             </Col>
           </Row>
-          <Carousel arrows slidesPerPage={3}>
+          <Carousel arrows slidesPerPage={3} itemWidth={300}>
             {[
               {
                 name: "AB Movings",
@@ -310,7 +311,12 @@ class Home extends React.Component {
                 location: "brooklyn",
               },
             ].map((v, i) => (
-              <div className="floating">
+              <div
+                className="floating"
+                style={{
+                  height: 270,
+                }}
+              >
                 <img alt="example" src="https://source.unsplash.com/random" />
                 <Card
                   className="floater"
